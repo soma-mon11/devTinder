@@ -1,6 +1,7 @@
 const express = require ('express');
 
 const app = express(); 
+const {adminAuth} =require('./middlewares/auth')
 
 // // /will work for getAi
 // app.get("/getAp?i",(req,res)=>{
@@ -31,6 +32,16 @@ const app = express();
 //     res.send("WElcome")
 // })
 
+//Handle Auth Middleware for only Get Request, POST, DELETE
+app.use("/admin",adminAuth)
+
+app.get("user",(req,res)=>{
+    res.send("AllDataSent")
+})
+
+app.get("/admin/getAllData",(req,res)=>{
+    res.send("AllDataSent")
+})
 
 
 app.use("/user",
